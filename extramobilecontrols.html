@@ -1,0 +1,75 @@
+<div id="mobile-controls">
+    <button id="left">⯇</button>
+    <button id="right">⯈</button>
+    <button id="up">⯅</button>
+    <button id="down">⯆</button>
+    <button id="shoot">⭘</button>
+  </div>
+  #mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-areas:
+      ". up . shoot"
+      "left down right shoot";
+    gap: 10px;
+    z-index: 9999;
+  }
+  
+  #mobile-controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+  }
+  #left { grid-area: left; }
+  #right { grid-area: right; }
+  #up { grid-area: up; }
+  #down { grid-area: down; }
+  #shoot { grid-area: shoot; }
+
+  
+
+
+
+  function simulateKeyPress(key, pressed) {
+    keys[key].pressed = pressed;
+  }
+  
+  document.getElementById('left').addEventListener('touchstart', () => simulateKeyPress('ArrowLeft', true));
+  document.getElementById('left').addEventListener('touchend', () => simulateKeyPress('ArrowLeft', false));
+  
+  document.getElementById('right').addEventListener('touchstart', () => simulateKeyPress('ArrowRight', true));
+  document.getElementById('right').addEventListener('touchend', () => simulateKeyPress('ArrowRight', false));
+  
+  document.getElementById('up').addEventListener('touchstart', () => simulateKeyPress('ArrowUp', true));
+  document.getElementById('up').addEventListener('touchend', () => simulateKeyPress('ArrowUp', false));
+  
+  document.getElementById('down').addEventListener('touchstart', () => simulateKeyPress('ArrowDown', true));
+  document.getElementById('down').addEventListener('touchend', () => simulateKeyPress('ArrowDown', false));
+  
+  document.getElementById('shoot').addEventListener('touchstart', () => {
+    if (game.over) return;
+    projectiles.push(new Projectile({
+      position: {
+        x: player.position.x + player.width / 2,
+        y: player.position.y
+      },
+      velocity: {
+        x: 0,
+        y: -11
+      }
+    }));
+  });
+
+  
+
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    document.getElementById('mobile-controls').style.display = 'grid';
+  }
+  

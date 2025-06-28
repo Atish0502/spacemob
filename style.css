@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url(./spaceo.jpg); */
+    /* background-color: black; */
+}
+div{
+    position: relative;
+}
+p{
+    position:fixed; z-index:10;color: azure; left:11px;top:7px;margin: 1;font-family: sans-serif,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 14px;
+}
+#mobile-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-areas:
+      ". up . shoot"
+      "left down right shoot";
+    gap: 10px;
+    z-index: 9999;
+  }
+  
+  #mobile-controls button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: none;
+  }
+  #left { grid-area: left; }
+  #right { grid-area: right; }
+  #up { grid-area: up; }
+  #down { grid-area: down; }
+  #shoot { grid-area: shoot; }
